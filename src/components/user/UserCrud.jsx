@@ -4,8 +4,8 @@ import Main from '../template/Main'
 
 const headerProps = {
     icon: 'users',
-    title: 'Usuários',
-    subtitle: 'Cadastro de usuários: Incluir, Listar, Alterar e Excluir!'
+    title: 'Users',
+    subtitle: 'Users Registration: Include, List, Change and Delete!'
 }
 
 const baseUrl = 'http://localhost:3001/users'
@@ -18,9 +18,9 @@ export default class UserCrud extends Component {
 
     state = { ...initialState }
 
-    componentWillMount() {
+    componentWillMount () {
         axios(baseUrl).then(resp => {
-            this.setState({ list: resp.data })
+            this.setState({list: resp.data})
         })
     }
 
@@ -41,7 +41,7 @@ export default class UserCrud extends Component {
 
     getUpdatedList(user, add = true) {
         const list = this.state.list.filter(u => u.id !== user.id)
-        if(add) list.unshift(user)
+        if (add) list.unshift(user)
         return list
     }
 
@@ -55,14 +55,15 @@ export default class UserCrud extends Component {
         return (
             <div className="form">
                 <div className="row">
+
                     <div className="col-12 col-md-6">
                         <div className="form-group">
-                            <label>Nome</label>
+                            <label>Name</label>
                             <input type="text" className="form-control"
                                 name="name"
                                 value={this.state.user.name}
                                 onChange={e => this.updateField(e)}
-                                placeholder="Digite o nome..." />
+                                placeholder="Type the name..." />
                         </div>
                     </div>
 
@@ -73,7 +74,7 @@ export default class UserCrud extends Component {
                                 name="email"
                                 value={this.state.user.email}
                                 onChange={e => this.updateField(e)}
-                                placeholder="Digite o e-mail..." />
+                                placeholder="Type the email..." />
                         </div>
                     </div>
                 </div>
@@ -83,14 +84,16 @@ export default class UserCrud extends Component {
                     <div className="col-12 d-flex justify-content-end">
                         <button className="btn btn-primary"
                             onClick={e => this.save(e)}>
-                            Salvar
-                        </button>
+                            Save
+                            </button>
 
                         <button className="btn btn-secondary ml-2"
-                            onClick={e => this.clear(e)}>
-                            Cancelar
-                        </button>
+                            onClick={e => this.clean(e)}>
+                            Calcel
+                            </button>
                     </div>
+
+
                 </div>
             </div>
         )
@@ -103,7 +106,7 @@ export default class UserCrud extends Component {
     remove(user) {
         axios.delete(`${baseUrl}/${user.id}`).then(resp => {
             const list = this.getUpdatedList(user, false)
-            this.setState({ list })
+            this.setState({list})
         })
     }
 
@@ -113,9 +116,9 @@ export default class UserCrud extends Component {
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nome</th>
+                        <th>Name</th>
                         <th>E-mail</th>
-                        <th>Ações</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -143,10 +146,11 @@ export default class UserCrud extends Component {
                         </button>
                     </td>
                 </tr>
+
             )
         })
     }
-    
+
     render() {
         return (
             <Main {...headerProps}>

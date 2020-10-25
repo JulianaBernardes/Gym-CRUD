@@ -4,6 +4,11 @@
       "id": 2,
       "name": "Maria Silva",
       "email": "ms@company.com"
+    },
+    {
+      "name": "Juliana",
+      "email": "juliana@mail.com",
+      "id": 3
     }
   ]
 }
